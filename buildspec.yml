@@ -2,7 +2,8 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: udacity-devops-project3
-    CODE_BUILD_NUMBER: $(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+    CODE_BUILD_NUMBER: ${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}
+    DEV_VERSION: 1
 
 phases:
   pre_build:
