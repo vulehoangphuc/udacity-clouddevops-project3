@@ -2,6 +2,7 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: udacity-devops-project3
+    BUILD_VERSION: 1
 
 phases:
   pre_build:
