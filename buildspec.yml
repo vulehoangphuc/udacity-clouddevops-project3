@@ -2,7 +2,6 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: udacity-devops-project3
-    CODE_BUILD_NUMBER: latest
 
 phases:
   pre_build:
@@ -14,11 +13,12 @@ phases:
     commands:
       - echo "Starting build on $(date)"
       - echo "Building Docker image..."
-      - docker build -t $IMAGE_REPO_NAME:$CODE_BUILD_NUMBER ./analytics/.
-      - docker tag $IMAGE_REPO_NAME:$CODE_BUILD_NUMBER $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODE_BUILD_NUMBER
+      - echo "Build number: $CODEBUILD_BUILD_NUMBER"
+      - docker build -t $IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER ./analytics/.
+      - docker tag $IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
 
   post_build:
     commands:
       - echo "Build completed on $(date)"
       - echo "Pushing Docker image to ECR..."
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODE_BUILD_NUMBER
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
