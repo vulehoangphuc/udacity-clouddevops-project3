@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: backend-coworking
-  name: backend-coworking
+    service: coworkingspace-api-service
+  name: coworkingspace-api-service
 spec:
   type: ClusterIP
   ports:
@@ -11,4 +11,4 @@ spec:
       port: 5153
       targetPort: 5153
   selector:
-    service: backend-coworking
+    service: coworkingspace-api-service

@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: backend-coworking
-  name: backend-coworking
+    service: coworkingspace-api-service
+  name: coworkingspace-api-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: backend-coworking
+      service: coworkingspace-api-service
   template:
     metadata:
       labels:
-        service: backend-coworking
+        service: coworkingspace-api-service
     spec:
       containers:
-        - image: 456195656493.dkr.ecr.us-east-1.amazonaws.com/udacity-devops-project3:14
-          name: backend-coworking
+        - image: 456195656493.dkr.ecr.us-east-1.amazonaws.com/udacity-devops-project3:15
+          name: coworkingspace-api-container
           imagePullPolicy: Always
           ports:
             - containerPort: 5153
